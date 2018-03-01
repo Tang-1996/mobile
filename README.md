@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="/static/images/logo.png" alt="UniNinja Logo" width=60/>
+  <img src="./logo.png" alt="UniNinja Logo" height=60/>
 </p>
 
-# UniNinja Mobile App
+# Mobile App
 React Native codebase that produces the UniNinja iOS and Android applications.
 
 ### Installation
