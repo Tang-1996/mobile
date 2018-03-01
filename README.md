@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./logo.png" alt="UniNinja Logo" height=60/>
+  <img src="logo.png" alt="UniNinja Logo" height=60/>
 </p>
 
 # Mobile App
