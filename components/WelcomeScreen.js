@@ -1,17 +1,22 @@
 import React, { Component } from 'react';
 import {
-	Button,
 	Image,
 	Platform,
 	StyleSheet,
 	Text,
 	View
 } from 'react-native';
+import { Button } from 'react-native-elements';
 
 type Props = {};
 export default class App extends Component<Props> {
-	showUniversityPressed(event) {
-		console.log("Show university");
+	constructor(props) {
+		super(props);
+		this.showUniversityPressed = this.showUniversityPressed.bind(this);
+	}
+
+	showUniversityPressed = (event) => {
+
 	}
 
 	render() {
@@ -27,7 +32,7 @@ export default class App extends Component<Props> {
 					Press the button below to display the name of the first uni!
 				</Text>
 
-				<Button onPress={this.showUniversityPressed} title="Show University" color="#F5FCFF" />
+				<Button buttonStyle={styles.buttonStyle} text="Show University" onPress={this.showUniversityPressed} />
 			</View>
 		);
 	}
@@ -58,4 +63,7 @@ const styles = StyleSheet.create({
 		marginBottom: 10,
 		padding: 20,
 	},
+	buttonStyle: {
+		
+	}
 });
