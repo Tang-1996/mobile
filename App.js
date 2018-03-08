@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, AppRegistry } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
 import WelcomeScreen from './components/WelcomeScreen';
@@ -12,7 +12,7 @@ const App = StackNavigator(
     {
         headerMode: "float",
         navigationOptions: {
-            headerTitle: "uni ninja",
+            headerTitle: "UniNinja",
             headerTintColor: "#1a64db",
         },
     }
@@ -26,5 +26,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
 });
+
+// skip this line if using Create React Native App
+AppRegistry.registerComponent('UniNinja', () => App);
 
 export default App;
