@@ -12,7 +12,7 @@ const App = StackNavigator(
     {
         headerMode: "float",
         navigationOptions: {
-            headerTitle: "uni ninja",
+            headerTitle: "UniNinja",
             headerTintColor: "#1a64db",
         },
     }
