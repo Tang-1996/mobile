@@ -1,4 +1,4 @@
-package com.awesomeproject;
+package com.unininja;
 
 import android.app.Application;
 
