@@ -10,6 +10,7 @@ class UniList extends Component {
     }
 
     unis() {
+        // TODO: This isn't so much an urgent change, but React has a key prop that components should be uniquely identified by, which makes sense to use over the id prop used here.
         return Object.keys(this.props.unis).map( id => this.props.unis[id]);
     }
 

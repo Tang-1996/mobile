@@ -1,3 +1,5 @@
+// TODO: Use ApolloJS (https://www.apollographql.com/docs/react/) to generate GraphQL requests.
+
 class Api {
   static headers() {
     return {
