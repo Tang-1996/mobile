@@ -5,11 +5,11 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../actions';
 
-import UniList from './UniList';
+import MainTabBar from './MainTabBar';
 
 class AppContainer extends Component {
     render() {
-        return <UniList {...this.props} />;
+        return <MainTabBar {...this.props} />;
     }
 }
 
