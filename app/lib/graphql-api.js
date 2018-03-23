@@ -1,7 +1,8 @@
 import gql from 'graphql-tag';
 
 class Api {
-    static host = 'https://localhost:3000';//'https://api.uni.ninja';
+    static localDebugMode = false;
+    static host = Api.localDebugMode ? 'http://localhost:3000' : 'https://api.uni.ninja/v0';
 
     static headers() {
         return {

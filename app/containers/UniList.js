@@ -10,7 +10,7 @@ import Api from '../lib/graphql-api';
 
 class UniList extends Component {
     render() {
-        console.log(UniListComponentWithData);
+        console.log(this.props);
 		return <UniListComponentWithData />;
 	}
 }
