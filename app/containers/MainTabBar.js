@@ -53,33 +53,6 @@ class MainTabBar extends Component {
 }
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		alignItems: 'center',
-		backgroundColor: '#1a64db',
-	},
-	logo: {
-		marginTop: 60,
-		width: 60,
-		height: 60,
-	},
-	welcome: {
-		fontSize: 30,
-		fontWeight: 'bold',
-		textAlign: 'center',
-		color: '#F5FCFF',
-		margin: 30,
-	},
-	instructions: {
-		fontSize: 18,
-		textAlign: 'center',
-		color: '#CCCCCC',
-		marginBottom: 10,
-		padding: 20,
-	},
-    scrollView: {
-        marginTop: 24
-    },
     tabBarIconImage: {
         height: 26,
         width: 26
