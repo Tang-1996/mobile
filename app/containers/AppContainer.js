@@ -13,7 +13,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 
 import Api from '../lib/graphql-api';
 
-import MainTabBar from './MainTabBar';
+import MainTabBar from '../components/MainTabBar';
 
 const client = new ApolloClient({
   link: new HttpLink({ uri: Api.host }),
@@ -29,15 +29,6 @@ class AppContainer extends Component {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-});
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators(ActionCreators, dispatch);
