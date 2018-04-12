@@ -10,12 +10,18 @@ import Api from '../lib/graphql-api';
 
 class UniList extends Component {
     render() {
-        console.log(this.props);
 		return <UniListComponentWithData />;
 	}
 }
 
-const UniListComponentWithData = graphql(Api.allUnis())(props => <Text>Hello</Text>);
+const UniListComponentWithData = graphql(Api.allUnis())(props => {
+    if (!props.data.loading) {
+        console.log(props.data);
+        return <Text>{props.data.universities[0].name}</Text>;
+    } else {
+        return <Text>Loading...</Text>;
+    }
+});
 
 const styles = StyleSheet.create({
 	container: {
