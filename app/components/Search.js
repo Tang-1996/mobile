@@ -8,14 +8,16 @@ import { connect } from 'react-redux';
 import { graphql } from 'react-apollo';
 import Api from '../lib/graphql-api';
 
-@connect(mapStateToProps)
-class UniList extends Component {
+import { favouriteUni } from '../actions/actions'
+
+class Search extends Component {
     constructor(props) {
         super(props);
         this.state = { text: 'Useless Placeholder' };
     }
 
     render() {
+        const {favouriteUniTest} = this.props;
 		return (
             <View style={styles.container}>
                 <TextInput
@@ -23,6 +25,10 @@ class UniList extends Component {
                     onChangeText={(text) => this.setState({text})}
                     value={this.state.text}
                 />
+
+                <Button
+                    text="Favourite Uni"
+                    onPress={() => favouriteUniTest('13254643')} />
             </View>
         );
 	}
@@ -45,8 +51,15 @@ const styles = StyleSheet.create({
     }
 });
 
-function mapStateToProps(state) {
-    return { unis: state.unis }
+const mapStateToProps = state => {
+    return state;
+    // return { unis: state.unis }
 }
 
-export default UniList;
+const mapDispatchToProps = dispatch => {
+    return {
+        favouriteUniTest: pubukprn => dispatch(favouriteUni(pubukprn))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Search);

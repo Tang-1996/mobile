@@ -3,7 +3,6 @@ import { StyleSheet } from 'react-native';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { ActionCreators } from '../actions';
 
 // ApolloClient imports.
 import { ApolloProvider } from 'react-apollo';
@@ -30,10 +29,4 @@ class AppContainer extends Component {
     }
 }
 
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators(ActionCreators, dispatch);
-}
-
-export default connect((state) => {
-    return { }
-}, mapDispatchToProps)(AppContainer);
+export default connect()(AppContainer);

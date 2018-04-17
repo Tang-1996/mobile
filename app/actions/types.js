@@ -1,1 +1,1 @@
-export const FETCH_UNIS = 'FETCH_UNIS';
+export const FAVOURITE_UNI = 'FAVOURITE_UNI';

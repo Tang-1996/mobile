@@ -5,7 +5,7 @@ import TabNavigator from 'react-native-tab-navigator';
 
 import { connect } from 'react-redux';
 
-import UniList from './UniList';
+import Search from './Search';
 
 class MainTabBar extends Component {
     constructor(props) {
@@ -27,7 +27,7 @@ class MainTabBar extends Component {
                     renderIcon={ () => <Image source={require(tabBarIconsPath + "universities.png")} style={styles.tabBarIconImage} /> }
                     renderSelectedIcon={ () => <Image source={require(tabBarIconsPath + "universities_selected.png")} style={styles.tabBarIconImage} /> }
                     onPress={ () => this.setState({ selectedTab: "universities" }) }>
-                    <UniList {...this.props} />
+                    <Search {...this.props} />
                 </TabNavigator.Item>
 
                 <TabNavigator.Item
@@ -60,7 +60,8 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps(state) {
-    return { unis: state.unis }
+    return state;
+    // return { unis: state.unis }
 }
 
 export default connect(mapStateToProps)(MainTabBar);
