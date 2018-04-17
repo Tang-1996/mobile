@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { graphql } from 'react-apollo';
 import Api from '../lib/graphql-api';
 
+@connect(mapStateToProps)
 class UniList extends Component {
     constructor(props) {
         super(props);
@@ -48,4 +49,4 @@ function mapStateToProps(state) {
     return { unis: state.unis }
 }
 
-export default connect(mapStateToProps)(UniList);
+export default UniList;
