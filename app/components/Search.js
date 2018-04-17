@@ -13,7 +13,8 @@ class Search extends Component {
     }
 
     render() {
-        const {favouriteUniTest} = this.props;
+        const { favouriteUniTest } = this.props;
+
 		return (
             <View style={styles.container}>
                 <Image source={require('../../static/images/logo.png')} style={styles.logo} />
