@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, View, Image, Text, TextInput, StyleSheet } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Image, Text, StyleSheet } from 'react-native';
 import TabNavigator from 'react-native-tab-navigator';
 
 import { connect } from 'react-redux';

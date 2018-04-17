@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
 
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 // ApolloClient imports.
 import { ApolloProvider } from 'react-apollo';
