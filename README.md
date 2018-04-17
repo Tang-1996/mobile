@@ -3,6 +3,8 @@
 </p>
 
 # Mobile App
+[![Build Status](https://travis-ci.org/UniNinja/mobile.svg?branch=master)](https://travis-ci.org/UniNinja/mobile)
+
 React Native codebase that produces the UniNinja iOS and Android applications.
 
 ### Installation
