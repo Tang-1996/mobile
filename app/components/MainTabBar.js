@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 
 // Component imports
 import Search from './Search';
-import Welcome from './Welcome';
+import Settings from './Settings';
 
 class MainTabBar extends Component {
     render() {
@@ -51,7 +51,7 @@ class MainTabBar extends Component {
                         titleStyle={styles.tabStyle}
                         selectedTitleStyle={styles.tabStyleSelected}
                         onPress={ () => selectTab(2) } >
-                        <Welcome {...this.props} />
+                        <Settings {...this.props} />
                     </TabNavigator.Item>
                 </TabNavigator>
             </SafeAreaView>
