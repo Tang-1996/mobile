@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import FontAwesome, { Icons } from "react-native-fontawesome";
 
 import { connect } from 'react-redux';
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
 	logo: {
 		color: 'white',
 		marginTop: 35,
-		fontSize: 29
+		fontSize: 34
 	},
     scrollView: {
         marginTop: 24
