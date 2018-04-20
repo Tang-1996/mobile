@@ -40,15 +40,16 @@ class Api {
 
     // GraphQL Queries
 
-    static allUnis() {
-        return gql`
-            query {
-                universities {
-                    name
-                }
-            }
-        `;
-    }
+    // static allUnis() {
+    //     return gql`
+    //         query {
+    //             universities {
+    //                 name
+    //                 pubukprn
+    //             }
+    //         }
+    //     `;
+    // }
 }
 
 export default Api;

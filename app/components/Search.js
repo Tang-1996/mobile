@@ -4,7 +4,7 @@ import { Button, SearchBar } from 'react-native-elements';
 
 import { connect } from 'react-redux';
 
-import { favouriteUni, fetchUniLookupTable } from '../actions/actions'
+import { favouriteUni } from '../actions/actions'
 
 class Search extends Component {
     constructor(props) {
@@ -13,7 +13,7 @@ class Search extends Component {
     }
 
     render() {
-        const { favouriteUniTest } = this.props;
+        const { favouriteUniProps } = this.props;
 
 		return (
             <View style={styles.container}>
@@ -39,7 +39,7 @@ class Search extends Component {
 
                 <Button
                     text="Find Universities"
-                    onPress={() => fetchUniLookupTable }
+                    onPress={() => favouriteUniProps('1234') }
                     style={styles.searchButton}/>
             </View>
         );
@@ -54,8 +54,8 @@ const styles = StyleSheet.create({
 	},
     logo: {
         marginTop: 35,
-        width: 60,
-        height: 60
+        width: 80,
+        height: 80
     },
     welcome: {
         fontSize: 30,
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     },
     searchBox: {
         width: '90%',
-        marginTop: 10,
+        marginTop: 20,
         height: 50,
         borderRadius: 8,
         borderBottomColor: 'transparent',
@@ -91,14 +91,13 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-    return state;
+    return { };
     // return { unis: state.unis }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchUniLookupTable: dispatch(fetchUniLookupTable()),
-        favouriteUniTest: pubukprn => dispatch(favouriteUni(pubukprn))
+        favouriteUniProps: pubukprn => dispatch(favouriteUni(pubukprn))
     }
 }
 

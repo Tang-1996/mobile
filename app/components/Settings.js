@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
 	logo: {
 		color: 'white',
 		marginTop: 35,
-		fontSize: 34
+		fontSize: 48
 	},
     scrollView: {
         marginTop: 24
