@@ -30,8 +30,10 @@ const client = new ApolloClient({
 class AppContainer extends Component {
     componentDidMount() {
         const { fetchList } = this.props;
-        console.log(fetchList);
-        // fetchList();
+
+        fetchList.then(() => {
+            console.log("Done");
+        })
     }
 
     render() {
