@@ -13,9 +13,32 @@ function favouriteUnisReducer(state = [], action) {
     }
 }
 
-// UI reducers
+function uniLookupTableReducer(state = { isFetching: false, lookupTable: {} }, action) {
+    switch (action.type) {
+        case types.REQUEST_UNI_LOOKUP_TABLE:
+            return {...state,
+                isFetching: true
+            };
+        case types.RECEIVE_UNI_LOOKUP_TABLE:
+            return {...state,
+                isFetching: false,
+                lookupTable: action.lookupTable
+            };
+        default:
+            return state;
+    }
+}
 
-function selectTabReducer(state = 0, action) {
+function toggleDebugModeReducer(state = true, action) {
+    switch (action.type) {
+        case types.TOGGLE_DEBUG_MODE:
+            return !state;
+        default:
+            return state;
+    }
+}
+
+function selectTabReducer(state = 2, action) {
     if (action.type === types.SELECT_TAB) {
         return action.index;
     } else {
@@ -25,5 +48,7 @@ function selectTabReducer(state = 0, action) {
 
 export default combineReducers({
     favouriteUnis: favouriteUnisReducer,
-    selectTab: selectTabReducer
+    uniLookupTable: uniLookupTableReducer,
+    debugModeEnabled: toggleDebugModeReducer,
+    selectedTab: selectTabReducer
 })

@@ -1,6 +1,9 @@
-# OSX
+# OSX 🙄
 #
 .DS_Store
+
+# Let's hide that API key 🔑
+constants.js
 
 # Xcode
 #

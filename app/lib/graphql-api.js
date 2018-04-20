@@ -1,8 +1,9 @@
 import gql from 'graphql-tag';
+import { SERVER_ENDPOINT, API_KEY } from './constants';
 
 class Api {
-    static localDebugMode = false;
-    static host = Api.localDebugMode ? 'http://localhost:3000' : 'https://api.uni.ninja/v0';
+    static host = SERVER_ENDPOINT;
+    static key = API_KEY;
 
     static headers() {
         return {
@@ -39,15 +40,16 @@ class Api {
 
     // GraphQL Queries
 
-    static allUnis() {
-        return gql`
-            query {
-                universities {
-                    name
-                }
-            }
-        `;
-    }
+    // static allUnis() {
+    //     return gql`
+    //         query {
+    //             universities {
+    //                 name
+    //                 pubukprn
+    //             }
+    //         }
+    //     `;
+    // }
 }
 
 export default Api;
