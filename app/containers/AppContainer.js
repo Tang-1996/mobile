@@ -31,9 +31,8 @@ class AppContainer extends Component {
     componentDidMount() {
         const { fetchList } = this.props;
 
-        fetchList.then(() => {
-            console.log("Done");
-        })
+        // Fetch the latest copy of the uni lookup table.
+        fetchList();
     }
 
     render() {
@@ -46,12 +45,12 @@ class AppContainer extends Component {
 }
 
 const mapStateToProps = state => {
-    return {}
+    return { }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchList: dispatch(fetchUniLookupTable())
+        fetchList: () => dispatch(fetchUniLookupTable())
     }
 }
 

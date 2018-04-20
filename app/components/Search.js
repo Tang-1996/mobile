@@ -4,7 +4,7 @@ import { Button, SearchBar } from 'react-native-elements';
 
 import { connect } from 'react-redux';
 
-import { favouriteUni } from '../actions/actions'
+import { favouriteUni } from '../actions/actions';
 
 class Search extends Component {
     constructor(props) {
@@ -13,7 +13,7 @@ class Search extends Component {
     }
 
     render() {
-        const { favouriteUniProps } = this.props;
+        const { favouriteUni } = this.props;
 
 		return (
             <View style={styles.container}>
@@ -39,7 +39,7 @@ class Search extends Component {
 
                 <Button
                     text="Find Universities"
-                    onPress={() => favouriteUniProps('1234') }
+                    onPress={() => favouriteUni('1234') }
                     style={styles.searchButton}/>
             </View>
         );
@@ -91,13 +91,12 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-    return { };
-    // return { unis: state.unis }
+    return { }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        favouriteUniProps: pubukprn => dispatch(favouriteUni(pubukprn))
+        favouriteUni: pubukprn => dispatch(favouriteUni(pubukprn))
     }
 }
 

@@ -23,7 +23,7 @@ class Settings extends Component {
                 <FontAwesome style={styles.logo}>{Icons.cog}</FontAwesome>
 
 				<View>
-                    <Switch //TODO: W
+                    <Switch
 						value={debugModeEnabled}
 						onValueChange={() => toggleDebugMode()}
 					/>

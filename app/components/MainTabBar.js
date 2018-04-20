@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-    return { selectedTab: state.selectTab };
+    return { selectedTab: state.selectedTab };
 }
 
 const mapDispatchToProps = dispatch => {
