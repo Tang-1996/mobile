@@ -29,7 +29,7 @@ export function fetchUniLookupTable() {
 
         // We are now in the 'fetching' state.
 
-        const query = "?query={universities{pubukprn,name}}"
+        const query = "?query=query%20Query%20%7B%0A%20%20universities%20%7B%0A%20%20%20%20name%0A%20%20%20%20pubukprn%0A%20%20%7D%0A%7D"
         const url = Api.host + query;
 
         const headers = new Headers();
@@ -38,12 +38,12 @@ export function fetchUniLookupTable() {
         return fetch(url, {
             headers: headers
         }).then(
-
             response => {
-                console.log(response);
-
-                // TODO: Extract the lookup table.
-                dispatch(receiveUniLookupTable({ university: "Sussex" }))
+                if (response.ok) {
+                    response.json().then(json => {
+                        dispatch(receiveUniLookupTable(json.data.universities))
+                    })
+                }
             }, error => {
                 console.log("ERROR: ", error);
             }

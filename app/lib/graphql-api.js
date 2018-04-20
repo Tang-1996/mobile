@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
-import { SERVER_ENDPOINT, API_KEY } from './constants';
+import { SERVER_API_ENDPOINT, LOCAL_API_ENDPOINT, API_KEY } from './constants';
 
 class Api {
-    static host = SERVER_ENDPOINT;
+    static host = LOCAL_API_ENDPOINT;
     static key = API_KEY;
 
     static headers() {

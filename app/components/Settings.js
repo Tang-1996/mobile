@@ -25,7 +25,7 @@ class Settings extends Component {
 
 				<View style={styles.debugModeContainer}>
 					<Text>Debug Mode {debugModeEnabled ? 'Enabled' : 'Disabled'}</Text>
-					<Text>{Api.host}</Text> // TODO: Implement
+					<Text>{Api.host}</Text>
                     <Switch
 						value={debugModeEnabled}
 						onValueChange={() => toggleDebugMode()}
