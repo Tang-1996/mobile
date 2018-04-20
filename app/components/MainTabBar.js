@@ -68,18 +68,18 @@ const styles = StyleSheet.create({
         backgroundColor: '#12438f',
     },
     tabBarIconImage: {
-        color: 'rgb(112,112,149)',
-        fontSize: 22
+        color: 'rgb(122,122,159)',
+        fontSize: 24
     },
     tabBarIconImageSelected: {
-        color: 'rgb(112,176,249)',
-        fontSize: 22
+        color: 'rgb(122,186,255)',
+        fontSize: 24
     },
     tabStyle: {
-        color: 'rgb(112,112,149)'
+        color: 'rgb(122,122,159)'
     },
     tabStyleSelected: {
-        color: 'rgb(112,176,249)'
+        color: 'rgb(122,186,255)'
     }
 });
 
