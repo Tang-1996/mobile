@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Switch } from 'react-native';
+import {View, StyleSheet, Switch, Text} from 'react-native';
 import FontAwesome, { Icons } from "react-native-fontawesome";
+import Api from '../lib/graphql-api';
 
 import { connect } from 'react-redux';
 
@@ -22,7 +23,9 @@ class Settings extends Component {
 			<View style={styles.container}>
                 <FontAwesome style={styles.logo}>{Icons.cog}</FontAwesome>
 
-				<View>
+				<View style={styles.debugModeContainer}>
+					<Text>Debug Mode {debugModeEnabled ? 'Enabled' : 'Disabled'}</Text>
+					<Text>{Api.host}</Text> // TODO: Implement
                     <Switch
 						value={debugModeEnabled}
 						onValueChange={() => toggleDebugMode()}
@@ -45,8 +48,8 @@ const styles = StyleSheet.create({
 		marginTop: 35,
 		fontSize: 48
 	},
-    scrollView: {
-        marginTop: 24
+    debugModeContainer: {
+        marginTop: 24,
     }
 });
 
