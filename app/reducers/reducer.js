@@ -13,10 +13,7 @@ function favouriteUnisReducer(state = [], action) {
     }
 }
 
-function uniLookupTableReducer(state = {
-    isFetching: false,
-    lookupTable: {}
-}, action) {
+function uniLookupTableReducer(state = { isFetching: false, lookupTable: {} }, action) {
     switch (action.type) {
         case types.REQUEST_UNI_LOOKUP_TABLE:
             return {...state,
@@ -32,9 +29,16 @@ function uniLookupTableReducer(state = {
     }
 }
 
-// UI reducers
+function toggleDebugModeReducer(state = true, action) {
+    switch (action.type) {
+        case types.TOGGLE_DEBUG_MODE:
+            return !state;
+        default:
+            return state;
+    }
+}
 
-function selectTabReducer(state = 0, action) {
+function selectTabReducer(state = 2, action) {
     if (action.type === types.SELECT_TAB) {
         return action.index;
     } else {
@@ -45,5 +49,6 @@ function selectTabReducer(state = 0, action) {
 export default combineReducers({
     favouriteUnis: favouriteUnisReducer,
     uniLookupTable: uniLookupTableReducer,
-    selectTab: selectTabReducer
+    debugModeEnabled: toggleDebugModeReducer,
+    selectedTab: selectTabReducer
 })

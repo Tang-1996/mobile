@@ -51,7 +51,11 @@ export function fetchUniLookupTable() {
     }
 }
 
-// UI actions
+export function toggleDebugMode() {
+    return {
+        type: types.TOGGLE_DEBUG_MODE
+    }
+}
 
 export function selectTab(index) {
     return {

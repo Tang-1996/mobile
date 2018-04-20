@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Switch } from 'react-native';
 import FontAwesome, { Icons } from "react-native-fontawesome";
 
 import { connect } from 'react-redux';
 
-class UniList extends Component {
+import { toggleDebugMode } from '../actions/actions';
+
+class Settings extends Component {
     // unis() {
     //     // TODO: This isn't so much an urgent change, but React has a key prop that components should be uniquely identified by, which makes sense to use over the id prop used here.
     //     // return Object.keys(this.props.unis).map( id => this.props.unis[id]);
@@ -12,9 +14,21 @@ class UniList extends Component {
     // }
 
     render() {
+    	const { debugModeEnabled, toggleDebugMode } = this.props;
+
+    	console.log(this.props);
+
 		return (
 			<View style={styles.container}>
                 <FontAwesome style={styles.logo}>{Icons.cog}</FontAwesome>
+
+				<View>
+                    <Switch //TODO: W
+						value={debugModeEnabled}
+						onValueChange={() => toggleDebugMode()}
+					/>
+				</View>
+
 			</View>
 		);
 	}
@@ -36,8 +50,14 @@ const styles = StyleSheet.create({
     }
 });
 
-function mapStateToProps(state) {
-    return { unis: state.unis }
+const mapStateToProps = state => {
+    return { debugModeEnabled: state.debugModeEnabled };
 }
 
-export default connect(mapStateToProps)(UniList);
+const mapDispatchToProps = dispatch => {
+    return {
+        toggleDebugMode: () => dispatch(toggleDebugMode())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Settings);
