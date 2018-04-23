@@ -30,7 +30,7 @@ export function fetchUniLookupTable() {
         // We are now in the 'fetching' state.
 
         const query = "?query=query%20Query%20%7B%0A%20%20universities%20%7B%0A%20%20%20%20name%0A%20%20%20%20pubukprn%0A%20%20%7D%0A%7D"
-        const url = Api.host + query;
+        const url = Api.endpoint + query;
 
         const headers = new Headers();
         headers.append("Authorization", "Basic " + Api.key);

@@ -5,7 +5,7 @@ import Api from '../lib/graphql-api';
 
 import { connect } from 'react-redux';
 
-import { toggleDebugMode } from '../actions/actions';
+import {fetchUniLookupTable, toggleDebugMode} from '../actions/actions';
 
 class Settings extends Component {
     // unis() {
@@ -15,7 +15,7 @@ class Settings extends Component {
     // }
 
     render() {
-    	const { debugModeEnabled, toggleDebugMode } = this.props;
+    	const { debugModeEnabled, toggleDebugMode, fetchUniLookupTable } = this.props;
 
     	console.log(this.props);
 
@@ -28,7 +28,10 @@ class Settings extends Component {
 					<Text>{Api.host}</Text>
                     <Switch
 						value={debugModeEnabled}
-						onValueChange={() => toggleDebugMode()}
+						onValueChange={() => {
+							toggleDebugMode();
+							fetchUniLookupTable();
+                        }}
 					/>
 				</View>
 
@@ -59,7 +62,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        toggleDebugMode: () => dispatch(toggleDebugMode())
+        toggleDebugMode: () => dispatch(toggleDebugMode()),
+		fetchUniLookupTable: () => dispatch(fetchUniLookupTable())
     }
 }
 

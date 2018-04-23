@@ -1,8 +1,22 @@
 import gql from 'graphql-tag';
+import { store } from '../../index';
 import { SERVER_API_ENDPOINT, LOCAL_API_ENDPOINT, API_KEY } from './constants';
 
 class Api {
-    static host = LOCAL_API_ENDPOINT;
+    static get endpoint() {
+        if (store === undefined) {
+            return LOCAL_API_ENDPOINT;
+        }
+
+        let debugModeEnabled = store.getState().debugModeEnabled;
+
+        if (debugModeEnabled) {
+            return LOCAL_API_ENDPOINT;
+        } else {
+            return SERVER_API_ENDPOINT;
+        }
+    };
+
     static key = API_KEY;
 
     static headers() {

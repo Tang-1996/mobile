@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { AppRegistry } from 'react-native';
 
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware, combineReduxers, compose } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import reducer from './app/reducers/reducer';
+
 import AppContainer from './app/containers/AppContainer';
 
 // Only create this logger if we are in development mode.
@@ -16,7 +17,7 @@ function configureStore(initialState) {
 	return createStore(reducer, initialState, enhancer);
 }
 
-const store = configureStore({});
+export const store = configureStore({});
 
 const App = () => (
 	<Provider store={store}>

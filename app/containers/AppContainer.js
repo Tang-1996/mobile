@@ -23,7 +23,7 @@ const auth = setContext((_, { headers }) => {
 });
 
 const client = new ApolloClient({
-    link: auth.concat(createHttpLink({ uri: Api.host })),
+    link: auth.concat(createHttpLink({ uri: Api.endpoint })),
     cache: new InMemoryCache()
 });
 
