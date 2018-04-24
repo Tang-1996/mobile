@@ -1,7 +1,9 @@
 language: node_js
+node_js:
+- node
 install:
-- echo "install nothing!"
+- npm install
 script:
-- echo "no tests!"
+- npm test
 after_success:
-- echo "DONE!"
+- echo "Success"

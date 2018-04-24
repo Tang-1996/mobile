@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Text, StyleSheet, SafeAreaView, StatusBar} from 'react-native'
+import {StyleSheet, SafeAreaView, StatusBar} from 'react-native'
 import TabNavigator from 'react-native-tab-navigator'
 import FontAwesome, { Icons } from 'react-native-fontawesome'
 
@@ -10,6 +10,7 @@ import { connect } from 'react-redux'
 // Component imports
 import Search from './Search'
 import Settings from './Settings'
+import MyList from './MyList'
 
 class MainTabBar extends Component {
   render () {
@@ -40,7 +41,7 @@ class MainTabBar extends Component {
             titleStyle={styles.tabStyle}
             selectedTitleStyle={styles.tabStyleSelected}
             onPress={() => selectTab(1)} >
-            <Text>My List</Text>
+            <MyList {...this.props} />
           </TabNavigator.Item>
 
           <TabNavigator.Item
