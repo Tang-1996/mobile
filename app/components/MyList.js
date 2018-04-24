@@ -16,7 +16,8 @@ class MyList extends Component {
     return (
       <ListItem
         title={'University of Sussex'}
-        id={item}
+        pubukprn={item}
+        key={item}
         onPressItem={this._onPressItem()} />
     )
   }
