@@ -19,10 +19,6 @@ class Search extends Component {
       <View style={styles.container}>
         <Image source={require('../../static/images/logo.png')} style={styles.logo} />
 
-        <Text style={styles.welcome}>
-          Welcome to UniNinja
-        </Text>
-
         <Text style={styles.instructions}>
           Browse for universities by name using the input box below.
         </Text>
@@ -54,15 +50,8 @@ const styles = StyleSheet.create({
   },
   logo: {
     marginTop: 35,
-    width: 80,
-    height: 80
-  },
-  welcome: {
-    fontSize: 30,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: '#F5FCFF',
-    margin: 30
+    width: 100,
+    height: 100
   },
   instructions: {
     fontSize: 18,
