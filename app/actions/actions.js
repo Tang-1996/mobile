@@ -1,6 +1,5 @@
 import * as types from './types'
 import Api from '../lib/graphql-api'
-import fetch from 'node-fetch'
 
 export function favouriteUni (pubukprn) {
   return {
@@ -33,7 +32,7 @@ export function fetchUniLookupTable () {
     const query = '?query=query%20Query%20%7B%0A%20%20universities%20%7B%0A%20%20%20%20name%0A%20%20%20%20pubukprn%0A%20%20%7D%0A%7D'
     const url = Api.endpoint + query
 
-    return fetch(url, {
+    return fetch(url, { // eslint-disable-line
       headers: {
         'Authorization': 'Basic ' + Api.key
       }
