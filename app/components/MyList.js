@@ -4,6 +4,8 @@ import FontAwesome, { Icons } from 'react-native-fontawesome'
 
 import { connect } from 'react-redux'
 
+import ListItem from './ListItem'
+
 class MyList extends Component {
   favouriteUnis () {
     const { favouriteUnis } = this.props
@@ -12,12 +14,16 @@ class MyList extends Component {
 
   renderItem (item) {
     return (
-      <View style={styles.item}>
-        <Text style={styles.itemText}>University of Sussex</Text>
-        <Text style={styles.itemText}>PUBUKPRN: {item}</Text>
-      </View>
+      <ListItem
+        title={"University of Sussex"}
+        id={item}
+        onPressItem={this._onPressItem()}/>
     )
   }
+
+  _onPressItem (id) {
+    console.log(id + " PRESSED!!")
+  };
 
   render () {
     return (
@@ -31,7 +37,7 @@ class MyList extends Component {
             renderItem={({item}) => this.renderItem(item)}
           />
         ) : (
-          <Text>No Unis To Show</Text>
+          <Text style={styles.noUnisText}>Unis you favourite will appear here</Text>
         )}
       </View>
     )
@@ -50,22 +56,17 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     fontSize: 42
   },
+  noUnisText: {
+    color: '#CCCCCC',
+    fontWeight: 'bold',
+    marginTop: 60,
+    marginLeft: 24,
+    marginRight: 24,
+    textAlign: 'center',
+    fontSize: 18
+  },
   list: {
     width: '100%'
-  },
-  item: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    backgroundColor: 'rgba(50, 0, 0, 0.2)',
-    minHeight: 50,
-    borderColor: 'rgba(50, 0, 0, 0.2)',
-    borderBottomWidth: 1
-  },
-  itemText: {
-    color: 'white',
-    fontWeight: 'bold',
-    marginLeft: 12
   }
 })
 
