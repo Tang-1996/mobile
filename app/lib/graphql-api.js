@@ -23,15 +23,35 @@ class Api {
 
   // GraphQL Queries
 
-  static get allUnisGqlQuery () {
+  static allUnisGqlQuery () {
     return gql`
-          query {
-              universities {
-                  name
-                  pubukprn
-              }
+      query {
+          universities {
+              name
+              pubukprn
           }
-      `
+      }
+    `
+  }
+
+  static uniInfoByPubukprn (pubukprn) {
+    return gql`
+      query {
+        university($pubukprn: String!) {
+          name
+          url
+          unionURL
+          color
+          courses
+          lat
+          lon
+          averageRent
+          uniLocationType
+          uniType
+          nearestTrainStation
+        }
+      }
+    `
   }
 }
 
