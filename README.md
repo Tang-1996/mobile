@@ -20,3 +20,11 @@ In order to build and run the application, do the following:
 > If you have not already got `react-native` installed on your system, you will first need to do so using: `npm install -g react-native-cli`.
 
 > When running the Android project on a Mac, make sure you launch the Android Emulator _before_ you run the `react-native run-android`.
+
+### StandardJS
+
+This project conforms to the [JavaScript Standard Style](https://standardjs.com). In order to check conformance, do the following:
+1. Install JavaScript Standard Style: `npm i standard --global`.
+2. Run the checker: `standard`.
+
+Any violations of the rules will be reported (printed) in the terminal window.
