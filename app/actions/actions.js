@@ -1,10 +1,10 @@
 import * as types from './types'
 import * as Api from '../lib/graphql-api'
 
-export function favouriteUni (pubukprn) {
+export function favouriteUni (uni) {
   return {
     type: types.FAVOURITE_UNI,
-    pubukprn
+    uni
   }
 }
 
