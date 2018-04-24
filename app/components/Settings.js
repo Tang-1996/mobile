@@ -8,12 +8,6 @@ import { connect } from 'react-redux'
 import {fetchUniLookupTable, toggleDebugMode} from '../actions/actions'
 
 class Settings extends Component {
-  // unis() {
-  //     // TODO: This isn't so much an urgent change, but React has a key prop that components should be uniquely identified by, which makes sense to use over the id prop used here.
-  //     // return Object.keys(this.props.unis).map( id => this.props.unis[id])
-  // return []
-  // }
-
   render () {
     const { debugModeEnabled, toggleDebugMode, fetchUniLookupTable } = this.props
 
@@ -22,8 +16,11 @@ class Settings extends Component {
         <FontAwesome style={styles.logo}>{Icons.cog}</FontAwesome>
 
         <View style={styles.debugModeContainer}>
-          <Text>Debug Mode {debugModeEnabled ? 'Enabled' : 'Disabled'}</Text>
-          <Text>{Api.host}</Text>
+          <View>
+            <Text style={styles.debugModeTitle}>Debug Mode {debugModeEnabled ? 'Enabled' : 'Disabled'}</Text>
+            <Text style={{color: 'lightgray'}}>{Api.endpoint}</Text>
+          </View>
+
           <Switch
             value={debugModeEnabled}
             onValueChange={() => {
@@ -50,7 +47,15 @@ const styles = StyleSheet.create({
     fontSize: 48
   },
   debugModeContainer: {
-    marginTop: 24
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 24,
+    width: '90%'
+  },
+  debugModeTitle: {
+    color: 'white',
+    fontWeight: 'bold',
+    marginBottom: 6
   }
 })
 
