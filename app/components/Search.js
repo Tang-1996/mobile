@@ -32,7 +32,7 @@ class Search extends Component {
           placeholderTextColor='rgba(250,250,250,0.6)'
           icon={{ color: 'white' }}
           clearIcon={{ color: 'white', name: 'clear' }}
-          placeholder='Type Here' />
+          placeholder='type to search' />
 
         <Button
           text='Find Universities'
