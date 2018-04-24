@@ -15,14 +15,14 @@ class MyList extends Component {
   renderItem (item) {
     return (
       <ListItem
-        title={"University of Sussex"}
+        title={'University of Sussex'}
         id={item}
-        onPressItem={this._onPressItem()}/>
+        onPressItem={this._onPressItem()} />
     )
   }
 
   _onPressItem (id) {
-    console.log(id + " PRESSED!!")
+    console.log(id + ' PRESSED!!')
   };
 
   render () {

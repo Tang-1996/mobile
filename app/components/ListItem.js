@@ -2,11 +2,11 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { Component } from 'react'
 
 class ListItem extends Component {
-  _onPress = () => {
-    this.props.onPressItem(this.props.id);
+  _onPress () {
+    this.props.onPressItem(this.props.id)
   };
 
-  render() {
+  render () {
     const { title, id } = this.props
 
     return (
@@ -15,7 +15,7 @@ class ListItem extends Component {
           <Text>{title}{id}</Text>
         </View>
       </TouchableOpacity>
-    );
+    )
   }
 }
 
