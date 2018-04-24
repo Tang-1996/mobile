@@ -1,34 +1,35 @@
 import React, { Component } from 'react'
-import {Image, View, StyleSheet, Text} from 'react-native'
+import {View, StyleSheet, ActivityIndicator, Text} from 'react-native'
 import { Button, SearchBar } from 'react-native-elements'
 
 import { connect } from 'react-redux'
 
 import { favouriteUni } from '../actions/actions'
+import MyFlatList from './myflatlist/MyFlatList'
 
 class Search extends Component {
   constructor (props) {
     super(props)
     this.state = { searchBoxText: '' }
+    this.onPressItem = this.onPressItem.bind(this)
+  }
+
+  onPressItem (item) {
+    this.props.favouriteUni(item)
   }
 
   render () {
-    const { favouriteUni } = this.props
+    const { favouriteUni, uniList } = this.props
 
     return (
       <View style={styles.container}>
-        <Image source={require('../../static/images/logo.png')} style={styles.logo} />
-
-        <Text style={styles.instructions}>
-          Browse for universities by name using the input box below.
-        </Text>
 
         <SearchBar
           onChangeText={(text) => this.setState({text})}
           onClearText={() => this.setState({searchBoxText: ''})}
           containerStyle={styles.searchBox}
           inputStyle={styles.searchBoxInput}
-          placeholderTextColor='rgba(250,250,250, 0.6)'
+          placeholderTextColor='rgba(250,250,250,0.6)'
           icon={{ color: 'white' }}
           clearIcon={{ color: 'white', name: 'clear' }}
           placeholder='Type Here' />
@@ -37,6 +38,18 @@ class Search extends Component {
           text='Find Universities'
           onPress={() => favouriteUni('1234')}
           style={styles.searchButton} />
+
+        {uniList.isFetching ? (
+          <View style={styles.loadingContainer}>
+            <ActivityIndicator size='large' color='rgba(255, 255, 255, 1.0)' />
+            <Text style={styles.loadingText}>Loading Data...</Text>
+          </View>
+        ) : (
+          <MyFlatList
+            style={styles.uniList}
+            data={uniList.lookupTable}
+            onPressItem={this.onPressItem} />
+        )}
       </View>
     )
   }
@@ -53,15 +66,10 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100
   },
-  instructions: {
-    fontSize: 18,
-    textAlign: 'center',
-    color: '#CCCCCC',
-    padding: 20
-  },
   searchBox: {
-    width: '90%',
-    marginTop: 20,
+    width: '94%',
+    marginTop: 16,
+    marginBottom: 16,
     height: 50,
     borderRadius: 8,
     borderBottomColor: 'transparent',
@@ -74,13 +82,25 @@ const styles = StyleSheet.create({
     color: 'white',
     backgroundColor: 'transparent'
   },
+  loadingContainer: {
+    marginTop: 50
+  },
+  loadingText: {
+    color: 'white',
+    marginTop: 12
+  },
   searchButton: {
-    marginTop: 30
+    marginTop: 30,
+    display: 'none'
+  },
+  uniList: {
+    width: '100%',
+    backgroundColor: 'rgba(50, 0, 0, 0.2)'
   }
 })
 
 const mapStateToProps = state => {
-  return { }
+  return { uniList: state.uniLookupTable }
 }
 
 const mapDispatchToProps = dispatch => {
