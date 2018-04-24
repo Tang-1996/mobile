@@ -5,6 +5,8 @@
 # Mobile App
 [![Build Status](https://travis-ci.org/UniNinja/mobile.svg?branch=master)](https://travis-ci.org/UniNinja/mobile)
 
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
 React Native codebase that produces the UniNinja iOS and Android applications.
 
 ### Installation
