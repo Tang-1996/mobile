@@ -1,11 +1,9 @@
 language: node_js
 node_js:
-    - node
+- node
 install:
-- echo "install nothing!"
+- npm install
 script:
-- echo "Checking JavaScript is 'Standard'"
-- npm install -g standard
-- standard
+- npm test
 after_success:
-- echo "DONE!"
+- echo "Success"
