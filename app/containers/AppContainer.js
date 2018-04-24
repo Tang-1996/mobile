@@ -9,7 +9,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 import { createHttpLink } from 'apollo-link-http'
 import { setContext } from 'apollo-link-context'
 
-import Api from '../lib/graphql-api'
+import * as Api from '../lib/graphql-api'
 
 import MainTabBar from '../components/MainTabBar'
 
@@ -18,12 +18,12 @@ import { fetchUniLookupTable } from '../actions/actions'
 // Set up the HTTP Basic Authentication method.
 const auth = setContext((_, { headers }) => {
   return {
-    headers: headers.append('Authorization', 'Basic ' + Api.key)
+    headers: headers.append('Authorization', 'Basic ' + Api.getApiKey())
   }
 })
 
 const client = new ApolloClient({
-  link: auth.concat(createHttpLink({ uri: Api.endpoint })),
+  link: auth.concat(createHttpLink({ uri: Api.getEndpoint() })),
   cache: new InMemoryCache()
 })
 

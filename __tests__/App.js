@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import * as types from '../app/actions/types'
 
 console.log(types.FAVOURITE_UNI)
@@ -31,3 +32,10 @@ test('Demo', () => {
 //     expect(0).toEqual(0)
 //   })
 // })
+=======
+import 'react-native'
+
+test('Demo test', () => {
+  expect(0).toEqual(0)
+})
+>>>>>>> 30ea802d14165b8fe31dfe32ab99da7a40f26322

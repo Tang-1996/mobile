@@ -24,7 +24,6 @@ In order to build and run the application, do the following:
 ### StandardJS
 
 This project conforms to the [JavaScript Standard Style](https://standardjs.com). In order to check conformance, do the following:
-1. Install JavaScript Standard Style: `npm i standard --global`.
-2. Run the checker: `standard`.
+1. Run the checker: `npm test`.
 
-Any violations of the rules will be reported (printed) in the terminal window.
+Any violations of the rules will be reported (printed) in the terminal window. This check is made automatically when pull requests are submitted.

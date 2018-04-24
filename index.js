@@ -1,5 +1,5 @@
 import React from 'react'
-import { AppRegistry, __DEV__ } from 'react-native'
+import { AppRegistry } from 'react-native'
 
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
@@ -10,7 +10,7 @@ import reducer from './app/reducers/reducer'
 import AppContainer from './app/containers/AppContainer'
 
 // Only create this logger if we are in development mode.
-//const loggerMiddleware = createLogger({ predicate: (getState, action) => __DEV__ })
+const loggerMiddleware = createLogger({ })
 
 function configureStore (initialState) {
   const enhancer = compose(applyMiddleware(thunkMiddleware, loggerMiddleware))

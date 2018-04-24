@@ -1,38 +1,47 @@
 import gql from 'graphql-tag'
-import { store } from '../../index'
 import { SERVER_API_ENDPOINT, LOCAL_API_ENDPOINT, API_KEY } from './constants'
 
-class Api {
-  static get endpoint () {
-    if (store === undefined) {
-      return LOCAL_API_ENDPOINT
-    }
+const debugModeEnabled = true
 
-    let debugModeEnabled = store.getState().debugModeEnabled
-
-    if (debugModeEnabled) {
-      return LOCAL_API_ENDPOINT
-    } else {
-      return SERVER_API_ENDPOINT
-    }
-  }
-
-  static get key () {
-    return API_KEY
-  }
-
-  // GraphQL Queries
-
-  static get allUnisGqlQuery () {
-    return gql`
-          query {
-              universities {
-                  name
-                  pubukprn
-              }
-          }
-      `
+export const getEndpoint = () => {
+  if (debugModeEnabled) {
+    return LOCAL_API_ENDPOINT
+  } else {
+    return SERVER_API_ENDPOINT
   }
 }
 
-export default Api
+export const getApiKey = () => {
+  return API_KEY
+}
+
+export const allUnisQueryGQL = () => {
+  return gql`
+    query {
+        universities {
+            name
+            pubukprn
+        }
+    }
+  `
+}
+
+export const uniInfoByPubukprnGQL = (pubukprn) => {
+  return gql`
+    query {
+      university($pubukprn: String!) {
+        name
+        url
+        unionURL
+        color
+        courses
+        lat
+        lon
+        averageRent
+        uniLocationType
+        uniType
+        nearestTrainStation
+      }
+    }
+  `
+}

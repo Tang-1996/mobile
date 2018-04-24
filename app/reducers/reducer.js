@@ -38,7 +38,7 @@ function toggleDebugModeReducer (state = false, action) {
   }
 }
 
-function selectTabReducer (state = 2, action) {
+function selectTabReducer (state = 1, action) {
   if (action.type === types.SELECT_TAB) {
     return action.index
   } else {
