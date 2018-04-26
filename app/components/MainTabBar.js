@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {StyleSheet, SafeAreaView, StatusBar} from 'react-native'
+import {StyleSheet, SafeAreaView, StatusBar, View, Text} from 'react-native'
 import TabNavigator from 'react-native-tab-navigator'
 import FontAwesome, { Icons } from 'react-native-fontawesome'
 
@@ -9,16 +9,31 @@ import { connect } from 'react-redux'
 
 // Component imports
 import Search from './Search'
-import Settings from './Settings'
 import MyList from './MyList'
+import Settings from './Settings'
 
 class MainTabBar extends Component {
+  headerTitleForSelectedTab (selectedTab) {
+    switch (selectedTab) {
+      case 0:
+        return 'Universities'
+      case 1:
+        return 'My List'
+      default:
+        return 'Settings'
+    }
+  }
+
   render () {
-    const { selectTab } = this.props
+    const { selectTab, selectedTab } = this.props
 
     return (
       <SafeAreaView style={styles.safeArea}>
         <StatusBar barStyle='light-content' />
+
+        <View style={styles.searchBarContainer}>
+          <Text style={styles.headerTitleText}>{this.headerTitleForSelectedTab(selectedTab)}</Text>
+        </View>
 
         <TabNavigator tabBarStyle={styles.tabBar} >
           <TabNavigator.Item
@@ -64,6 +79,18 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
     backgroundColor: '#12438f'
+  },
+  searchBarContainer: {
+    width: '100%',
+    height: 60,
+    backgroundColor: '#12438f',
+    justifyContent: 'center'
+  },
+  headerTitleText: {
+    color: 'white',
+    fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'center'
   },
   tabBar: {
     backgroundColor: '#12438f'

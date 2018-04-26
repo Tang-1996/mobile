@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import {View, StyleSheet, FlatList, Text} from 'react-native'
+import {View, StyleSheet, Text} from 'react-native'
 import FontAwesome, { Icons } from 'react-native-fontawesome'
 
 import { connect } from 'react-redux'
 
-import ListItem from './ListItem'
+import MyFlatList from './myflatlist/MyFlatList'
 
 class MyList extends Component {
   favouriteUnis () {
@@ -12,19 +12,9 @@ class MyList extends Component {
     return favouriteUnis
   }
 
-  renderItem (item) {
-    return (
-      <ListItem
-        title={'University of Sussex'}
-        pubukprn={item}
-        key={item}
-        onPressItem={this._onPressItem()} />
-    )
+  onPressItem (item) {
+    console.log(item)
   }
-
-  _onPressItem (id) {
-    console.log(id + ' PRESSED!!')
-  };
 
   render () {
     return (
@@ -32,11 +22,10 @@ class MyList extends Component {
         <FontAwesome style={styles.logo}>{Icons.list}</FontAwesome>
 
         {this.favouriteUnis().length > 0 ? (
-          <FlatList
-            style={styles.list}
+          <MyFlatList
+            style={styles.favouriteUniList}
             data={this.favouriteUnis()}
-            renderItem={({item}) => this.renderItem(item)}
-          />
+            onPressItem={this.onPressItem} />
         ) : (
           <Text style={styles.noUnisText}>Unis you favourite will appear here</Text>
         )}
@@ -66,8 +55,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 18
   },
-  list: {
-    width: '100%'
+  favouriteUniList: {
+    width: '100%',
+    backgroundColor: 'rgba(50, 0, 0, 0.2)'
   }
 })
 

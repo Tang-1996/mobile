@@ -1,4 +1,4 @@
 {
-  "presets": ["react-native"],
-  "plugins": ["syntax-decorators"]
+  "presets": ["env", "react-native"],
+  "plugins": ["syntax-decorators", "transform-class-properties"]
 }

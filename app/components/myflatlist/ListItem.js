@@ -1,18 +1,21 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { Component } from 'react'
 
-class ListItem extends Component {
+export default class ListItem extends Component {
+  constructor (props) {
+    super(props)
+    this._onPress = this._onPress.bind(this)
+  }
+
   _onPress () {
-    this.props.onPressItem(this.props.id)
-  };
+    this.props.onPressItem(this.props.uni)
+  }
 
   render () {
-    const { title, pubukprn } = this.props
-
     return (
       <TouchableOpacity onPress={this._onPress}>
         <View style={styles.item}>
-          <Text>{title}{pubukprn}</Text>
+          <Text style={styles.itemText}>{this.props.uni.name}</Text>
         </View>
       </TouchableOpacity>
     )
@@ -24,7 +27,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
-    backgroundColor: 'rgba(50, 0, 0, 0.2)',
     minHeight: 50,
     borderColor: 'rgba(50, 0, 0, 0.2)',
     borderBottomWidth: 1
@@ -35,5 +37,3 @@ const styles = StyleSheet.create({
     marginLeft: 12
   }
 })
-
-export default ListItem

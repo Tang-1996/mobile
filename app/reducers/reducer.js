@@ -5,7 +5,7 @@ function favouriteUnisReducer (state = [], action) {
   if (action.type === types.FAVOURITE_UNI) {
     const favourites = [...state]
 
-    favourites.push(action.pubukprn)
+    favourites.push(action.uni)
 
     return favourites
   } else {
@@ -38,7 +38,7 @@ function toggleDebugModeReducer (state = false, action) {
   }
 }
 
-function selectTabReducer (state = 1, action) {
+function selectTabReducer (state = 0, action) {
   if (action.type === types.SELECT_TAB) {
     return action.index
   } else {

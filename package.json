@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "standard && jest"
+    "test": "standard"
   },
   "dependencies": {
     "@angular/common": "^5.2.10",
@@ -34,6 +34,8 @@
   "devDependencies": {
     "babel-jest": "22.4.0",
     "babel-plugin-syntax-decorators": "^6.13.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-react-native": "4.0.0",
     "jest": "22.4.0",
     "mocha": "^5.0.1",
@@ -42,9 +44,13 @@
     "standard": "^11.0.1"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "testEnvironment": "node"
   },
   "standard": {
-    "globals": ["test", "expect"]
+    "globals": [
+      "test",
+      "expect"
+    ]
   }
 }
