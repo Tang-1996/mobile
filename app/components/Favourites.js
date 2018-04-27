@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
-import {View, StyleSheet, Text} from 'react-native'
+import { View, StyleSheet, Text } from 'react-native'
+import { StackNavigator } from 'react-navigation'
 import FontAwesome, { Icons } from 'react-native-fontawesome'
 
 import { connect } from 'react-redux'
 
 import MyFlatList from './myflatlist/MyFlatList'
+import UniProfile from './UniProfile'
 
-class MyList extends Component {
+class Favourites extends Component {
   favouriteUnis () {
     const { favouriteUnis } = this.props
     return favouriteUnis
@@ -69,4 +71,23 @@ const mapDispatchToProps = dispatch => {
   return { }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MyList)
+const favourites = connect(mapStateToProps, mapDispatchToProps)(Favourites)
+
+const FavouritesNavigator = StackNavigator(
+  {
+    Favourites: { screen: favourites },
+    UniProfile: { screen: UniProfile }
+  },
+  {
+    headerMode: 'float',
+    navigationOptions: {
+      headerTitle: 'Favourites',
+      headerTintColor: 'white',
+      headerStyle: {
+        backgroundColor: 'rgb(28,68,138)'
+      }
+    }
+  }
+)
+
+export default FavouritesNavigator

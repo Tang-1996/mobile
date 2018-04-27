@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 
+// Redux imports
 import { connect } from 'react-redux'
+import { fetchUniLookupTable } from '../actions/actions'
 
-// ApolloClient imports.
+// ApolloClient imports
 import { ApolloProvider } from 'react-apollo'
 import { ApolloClient } from 'apollo-client'
 import { InMemoryCache } from 'apollo-cache-inmemory'
@@ -11,9 +13,8 @@ import { setContext } from 'apollo-link-context'
 
 import * as Api from '../lib/graphql-api'
 
-import MainTabBar from '../components/MainTabBar'
-
-import { fetchUniLookupTable } from '../actions/actions'
+// Component imports
+import MainTabBarNavigator from '../components/MainTabBarNavigator'
 
 // Set up the HTTP Basic Authentication method.
 const auth = setContext((_, { headers }) => {
@@ -38,7 +39,7 @@ class AppContainer extends Component {
   render () {
     return (
       <ApolloProvider client={client}>
-        <MainTabBar {...this.props} />
+        <MainTabBarNavigator {...this.props} />
       </ApolloProvider>
     )
   }

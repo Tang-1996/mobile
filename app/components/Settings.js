@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {View, StyleSheet} from 'react-native'
 import FontAwesome, { Icons } from 'react-native-fontawesome'
+import { StackNavigator } from 'react-navigation'
 
 import { connect } from 'react-redux'
 
@@ -35,4 +36,22 @@ const mapDispatchToProps = dispatch => {
   return { }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Settings)
+const settings = connect(mapStateToProps, mapDispatchToProps)(Settings)
+
+const SettingsNavigator = StackNavigator(
+  {
+    Settings: { screen: settings }
+  },
+  {
+    headerMode: 'float',
+    navigationOptions: {
+      headerTitle: 'Settings',
+      headerTintColor: 'white',
+      headerStyle: {
+        backgroundColor: 'rgb(28,68,138)'
+      }
+    }
+  }
+)
+
+export default SettingsNavigator

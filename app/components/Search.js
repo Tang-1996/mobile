@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
-import {View, StyleSheet, ActivityIndicator, Text} from 'react-native'
+import { View, StyleSheet, ActivityIndicator, Text, StatusBar } from 'react-native'
 import { Button, SearchBar } from 'react-native-elements'
+import { StackNavigator } from 'react-navigation'
 
 import { connect } from 'react-redux'
 
 import { favouriteUni } from '../actions/actions'
 import MyFlatList from './myflatlist/MyFlatList'
+import UniProfile from './UniProfile'
 
 class Search extends Component {
   constructor (props) {
@@ -15,7 +17,9 @@ class Search extends Component {
   }
 
   onPressItem (item) {
-    this.props.favouriteUni(item)
+    this.props.navigation.navigate(
+      'UniProfile'
+    )
   }
 
   render () {
@@ -23,6 +27,7 @@ class Search extends Component {
 
     return (
       <View style={styles.container}>
+        <StatusBar barStyle='light-content' />
 
         <SearchBar
           onChangeText={(text) => this.setState({text})}
@@ -109,4 +114,23 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Search)
+const search = connect(mapStateToProps, mapDispatchToProps)(Search)
+
+const SearchNavigator = StackNavigator(
+  {
+    Search: { screen: search },
+    UniProfile: { screen: UniProfile }
+  },
+  {
+    headerMode: 'float',
+    navigationOptions: {
+      headerTitle: 'Search',
+      headerTintColor: 'white',
+      headerStyle: {
+        backgroundColor: 'rgb(28,68,138)'
+      }
+    }
+  }
+)
+
+export default SearchNavigator
