@@ -17,13 +17,12 @@ export const getApiKey = () => {
 
 export const uniInfoGQL = () => {
   return gql`
-    query university($pubukprn: String!) {
+    query ($pubukprn: String!) {
       university(pubukprn: $pubukprn) {
         name
         url
         unionURL
         color
-        courses
         lat
         lon
         averageRent
@@ -36,5 +35,5 @@ export const uniInfoGQL = () => {
 }
 
 export const urlForUniLogo = (uniURL) => {
-  return `logo.clearbit.com/${uniURL}`
+  return `https://logo.clearbit.com/${uniURL}`
 }
