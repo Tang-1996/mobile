@@ -5,7 +5,7 @@ export default function () {
   return (
     <View style={styles.loadingContainer}>
       <ActivityIndicator size='large' color='rgba(255, 255, 255, 1.0)' />
-      <Text style={styles.loadingText}>Loading Data...</Text>
+      <Text style={styles.loadingText}>Loading...</Text>
     </View>
   )
 }

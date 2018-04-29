@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, StyleSheet } from 'react-native'
-import FontAwesome, { Icons } from 'react-native-fontawesome'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 import { StackNavigator } from 'react-navigation'
 
 import { connect } from 'react-redux'
@@ -9,7 +9,7 @@ class Settings extends Component {
   render () {
     return (
       <View style={styles.container}>
-        <FontAwesome style={styles.logo}>{Icons.cog}</FontAwesome>
+        <Ionicons name={'ios-settings'} style={styles.logo} />
       </View>
     )
   }
@@ -22,9 +22,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#1a64db'
   },
   logo: {
-    color: 'white',
-    marginTop: 35,
-    fontSize: 48
+    color: 'lightgray',
+    marginTop: 45,
+    marginBottom: 16,
+    fontSize: 42
   }
 })
 

@@ -31,7 +31,7 @@ class AppContainer extends Component {
   componentDidMount () {
     const { fetchList } = this.props
 
-    // Fetch the latest copy of the uni lookup table.
+    // Fetch the latest copy of the uni lookup table when the app launches.
     fetchList()
   }
 

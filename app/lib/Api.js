@@ -20,6 +20,7 @@ export const uniInfoGQL = () => {
     query ($pubukprn: String!) {
       university(pubukprn: $pubukprn) {
         name
+        pubukprn
         url
         unionURL
         color

@@ -24,6 +24,15 @@ class UniProfile extends Component {
 
     console.log(university)
 
+    // PUBUKPRN for debugging.
+    // TODO: Remove for production.
+    if (university.pubukprn !== null) {
+      tableRows.push({
+        key: 'PUBUKPRN',
+        value: university.pubukprn
+      })
+    }
+
     // Nearest train station
     if (university.nearestTrainStation !== null) {
       tableRows.push({
@@ -50,17 +59,38 @@ class UniProfile extends Component {
 
     // Location type
     if (university.uniLocationType !== null) {
+      let uniLocationType = ''
+
+      switch (university.uniLocationType) {
+        case 'CITY':
+          uniLocationType = 'City'
+          break
+        case 'SEASIDE_CITY':
+          uniLocationType = 'Seaside City'
+          break
+        default:
+          uniLocationType = 'Town'
+      }
+
       tableRows.push({
         key: 'Location Type',
-        value: university.uniLocationType
+        value: uniLocationType
       })
     }
 
     // Uni type
     if (university.uniType !== null) {
+      let uniType = ''
+
+      if (university.uniType === 'CAMPUS') {
+        uniType = 'Campus'
+      } else {
+        uniType = 'City'
+      }
+
       tableRows.push({
         key: 'University Type',
-        value: university.uniType
+        value: uniType
       })
     }
 
@@ -68,7 +98,7 @@ class UniProfile extends Component {
     if (university.averageRent !== null) {
       tableRows.push({
         key: 'Average Rent (excl. bills)',
-        value: university.averageRent
+        value: '£' + university.averageRent
       })
     }
 
@@ -126,6 +156,12 @@ class UniProfile extends Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#1a64db',
+    alignItems: 'center',
+    width: '100%',
+    height: '100%'
+  },
   logoImage: {
     marginTop: 16,
     width: 70,
@@ -138,16 +174,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     fontWeight: '900',
     fontSize: 20
-  },
-  townName: {
-    color: 'white',
-    fontSize: 30
-  },
-  container: {
-    backgroundColor: '#1a64db',
-    alignItems: 'center',
-    width: '100%',
-    height: '100%'
   },
   infoTable: {
     width: '100%'
@@ -170,12 +196,7 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     color: 'white',
     marginRight: 16
-  },
-  searchButton: {
-    marginTop: 30,
-    marginBottom: 30
   }
-
 })
 
 const UniProfileWithData = graphql(Api.uniInfoGQL(), {
@@ -191,7 +212,9 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-  return { }
+  return {
+    favouriteUni: pubukprn => dispatch(favouriteUni(pubukprn))
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UniProfileWithData)

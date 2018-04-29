@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 import { StackNavigator } from 'react-navigation'
-import FontAwesome, { Icons } from 'react-native-fontawesome'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
 import { connect } from 'react-redux'
 
@@ -15,22 +15,29 @@ class Favourites extends Component {
   }
 
   onPressItem (item) {
+    // TODO: Navigate to UniProfile page for this uni.
     console.log(item)
+  }
+
+  renderFavouriteUniversitiesList (universities) {
+    if (universities.length <= 0) {
+      return <Text style={styles.noUnisText}>Universities You Favourite Will Appear Here</Text>
+    } else {
+      return (
+        <MyFlatList
+          style={styles.favouriteUniList}
+          data={this.favouriteUnis()}
+          onPressItem={this.onPressItem} />
+      )
+    }
   }
 
   render () {
     return (
       <View style={styles.container}>
-        <FontAwesome style={styles.logo}>{Icons.list}</FontAwesome>
+        <Ionicons name={'ios-star'} style={styles.logo} />
 
-        {this.favouriteUnis().length > 0 ? (
-          <MyFlatList
-            style={styles.favouriteUniList}
-            data={this.favouriteUnis()}
-            onPressItem={this.onPressItem} />
-        ) : (
-          <Text style={styles.noUnisText}>Unis you favourite will appear here</Text>
-        )}
+        {this.renderFavouriteUniversitiesList(this.favouriteUnis())}
       </View>
     )
   }
@@ -43,19 +50,18 @@ const styles = StyleSheet.create({
     backgroundColor: '#1a64db'
   },
   logo: {
-    color: 'white',
-    marginTop: 35,
+    color: 'lightgray',
+    marginTop: 45,
     marginBottom: 16,
     fontSize: 42
   },
   noUnisText: {
-    color: '#CCCCCC',
-    fontWeight: 'bold',
-    marginTop: 60,
+    color: 'white',
+    fontWeight: '900',
+    marginTop: 20,
     marginLeft: 24,
     marginRight: 24,
-    textAlign: 'center',
-    fontSize: 18
+    textAlign: 'center'
   },
   favouriteUniList: {
     width: '100%',

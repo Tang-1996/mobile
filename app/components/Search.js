@@ -3,7 +3,6 @@ import { View, StyleSheet, StatusBar } from 'react-native'
 import { StackNavigator } from 'react-navigation'
 
 import { connect } from 'react-redux'
-import { favouriteUni } from '../actions/actions'
 
 import UniProfile from './UniProfile'
 import Loading from './Loading'
@@ -13,6 +12,7 @@ import UniList from './UniList'
 class Search extends Component {
   constructor (props) {
     super(props)
+
     this.state = { searchBoxText: '' }
     this.onPressItem = this.onPressItem.bind(this)
   }
@@ -52,11 +52,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#1a64db',
     alignItems: 'center'
-  },
-  logo: {
-    marginTop: 35,
-    width: 100,
-    height: 100
   }
 })
 
@@ -65,9 +60,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-  return {
-    favouriteUni: pubukprn => dispatch(favouriteUni(pubukprn))
-  }
+  return { }
 }
 
 const search = connect(mapStateToProps, mapDispatchToProps)(Search)

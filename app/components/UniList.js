@@ -51,9 +51,5 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'white',
     backgroundColor: 'transparent'
-  },
-  searchButton: {
-    marginTop: 30,
-    display: 'none'
   }
 })
