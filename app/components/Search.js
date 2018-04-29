@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
-import { View, StyleSheet, ActivityIndicator, Text, StatusBar } from 'react-native'
+import { View, StyleSheet, StatusBar } from 'react-native'
 import { Button, SearchBar } from 'react-native-elements'
 import { StackNavigator } from 'react-navigation'
 
 import { connect } from 'react-redux'
-
 import { favouriteUni } from '../actions/actions'
-import MyFlatList from './myflatlist/MyFlatList'
+
 import UniProfile from './UniProfile'
+import Loading from './Loading'
+import NetworkError from './NetworkError'
+import MyFlatList from './myflatlist/MyFlatList'
 
 class Search extends Component {
   constructor (props) {
@@ -20,6 +22,16 @@ class Search extends Component {
     this.props.navigation.navigate(
       'UniProfile'
     )
+  }
+
+  renderUniList (uniList) {
+    if (uniList.isFetching) {
+      return <Loading />
+    } else if (uniList.fetchFailed) {
+      return <NetworkError />
+    } else {
+      return <MyFlatList style={styles.uniList} data={uniList.lookupTable} onPressItem={this.onPressItem} />
+    }
   }
 
   render () {
@@ -44,17 +56,7 @@ class Search extends Component {
           onPress={() => favouriteUni('1234')}
           style={styles.searchButton} />
 
-        {uniList.isFetching ? (
-          <View style={styles.loadingContainer}>
-            <ActivityIndicator size='large' color='rgba(255, 255, 255, 1.0)' />
-            <Text style={styles.loadingText}>Loading Data...</Text>
-          </View>
-        ) : (
-          <MyFlatList
-            style={styles.uniList}
-            data={uniList.lookupTable}
-            onPressItem={this.onPressItem} />
-        )}
+        {this.renderUniList(uniList)}
       </View>
     )
   }

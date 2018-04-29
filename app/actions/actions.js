@@ -23,6 +23,12 @@ export function receiveUniLookupTable (lookupTable) {
   }
 }
 
+export function reportUniLookupTableNetworkError () {
+  return {
+    type: types.UNI_LOOKUP_TABLE_NETWORK_ERR
+  }
+}
+
 export function fetchUniLookupTable () {
   return function (dispatch) {
     dispatch(requestUniLookupTable())
@@ -44,21 +50,9 @@ export function fetchUniLookupTable () {
           })
         }
       }, error => {
-        console.log('ERROR: ', error)
+        console.log('Network ERROR: ', error)
+        dispatch(reportUniLookupTableNetworkError())
       }
     )
-  }
-}
-
-export function toggleDebugMode () {
-  return {
-    type: types.TOGGLE_DEBUG_MODE
-  }
-}
-
-export function selectTab (index) {
-  return {
-    type: types.SELECT_TAB,
-    index
   }
 }

@@ -13,7 +13,7 @@ function favouriteUnisReducer (state = [], action) {
   }
 }
 
-function uniLookupTableReducer (state = { isFetching: false, lookupTable: {} }, action) {
+function uniLookupTableReducer (state = { isFetching: false, fetchFailed: false, lookupTable: {} }, action) {
   switch (action.type) {
     case types.REQUEST_UNI_LOOKUP_TABLE:
       return {...state,
@@ -22,33 +22,20 @@ function uniLookupTableReducer (state = { isFetching: false, lookupTable: {} }, 
     case types.RECEIVE_UNI_LOOKUP_TABLE:
       return {...state,
         isFetching: false,
+        fetchFailed: false,
         lookupTable: action.lookupTable
+      }
+    case types.UNI_LOOKUP_TABLE_NETWORK_ERR:
+      return {...state,
+        isFetching: false,
+        fetchFailed: true
       }
     default:
       return state
   }
 }
 
-function toggleDebugModeReducer (state = false, action) {
-  switch (action.type) {
-    case types.TOGGLE_DEBUG_MODE:
-      return !state
-    default:
-      return state
-  }
-}
-
-function selectTabReducer (state = 0, action) {
-  if (action.type === types.SELECT_TAB) {
-    return action.index
-  } else {
-    return state
-  }
-}
-
 export default combineReducers({
   favouriteUnis: favouriteUnisReducer,
-  uniLookupTable: uniLookupTableReducer,
-  debugModeEnabled: toggleDebugModeReducer,
-  selectedTab: selectTabReducer
+  uniLookupTable: uniLookupTableReducer
 })
