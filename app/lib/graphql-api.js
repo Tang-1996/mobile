@@ -26,10 +26,10 @@ export const allUnisQueryGQL = () => {
   `
 }
 
-export const uniInfoByPubukprnGQL = (pubukprn) => {
+export const uniInfoGQL = () => {
   return gql`
-    query {
-      university($pubukprn: String!) {
+    query university($pubukprn: String!) {
+      university(pubukprn: $pubukprn) {
         name
         url
         unionURL

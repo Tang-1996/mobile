@@ -19,7 +19,8 @@ class Search extends Component {
 
   onPressItem (item) {
     this.props.navigation.navigate(
-      'UniProfile'
+      'UniProfile',
+      { university: item }
     )
   }
 
