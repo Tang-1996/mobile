@@ -5,12 +5,26 @@ import { SearchBar } from 'react-native-elements'
 import MyFlatList from './myflatlist/MyFlatList'
 
 export default class UniList extends React.Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      filterTerm: ''
+    }
+  }
+
+  searchTermChanged (text) {
+    this.setState({
+      filterTerm: text
+    })
+  }
+
   render () {
     return (
       <View style={styles.container}>
         <SearchBar
-          onChangeText={(text) => this.setState({text})}
-          onClearText={() => this.setState({searchBoxText: ''})}
+          onChangeText={(text) => this.searchTermChanged(text)}
+          onClearText={(text) => this.searchTermChanged(text)}
           containerStyle={styles.searchBox}
           inputStyle={styles.searchBoxInput}
           placeholderTextColor='rgba(250,250,250,0.6)'
@@ -21,6 +35,7 @@ export default class UniList extends React.Component {
         <MyFlatList
           style={styles.uniList}
           data={this.props.data}
+          filterTerm={this.state.filterTerm}
           onPressItem={this.props.onPressItem} />
       </View>
     )
