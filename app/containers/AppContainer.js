@@ -10,7 +10,7 @@ import { ApolloClient } from 'apollo-client'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { HttpLink } from 'apollo-link-http'
 
-import * as Api from '../lib/graphql-api'
+import * as Api from '../lib/Api'
 
 // Component imports
 import MainTabBarNavigator from '../components/MainTabBarNavigator'

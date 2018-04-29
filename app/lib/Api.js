@@ -15,17 +15,6 @@ export const getApiKey = () => {
   return API_KEY
 }
 
-export const allUnisQueryGQL = () => {
-  return gql`
-    query {
-        universities {
-            name
-            pubukprn
-        }
-    }
-  `
-}
-
 export const uniInfoGQL = () => {
   return gql`
     query university($pubukprn: String!) {
@@ -44,4 +33,8 @@ export const uniInfoGQL = () => {
       }
     }
   `
+}
+
+export const urlForUniLogo = (uniURL) => {
+  return `logo.clearbit.com/${uniURL}`
 }

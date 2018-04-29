@@ -1,5 +1,5 @@
 import * as types from './types'
-import * as Api from '../lib/graphql-api'
+import * as Api from '../lib/Api'
 
 export function favouriteUni (uni) {
   return {
