@@ -75,6 +75,14 @@ class UniProfile extends Component {
     return tableRows
   }
 
+  imageFrom (university) {
+    if (university.url !== null) {
+      return <Image source={{ uri: Api.urlForUniLogo(university.url) }} style={styles.logoImage} />
+    } else if (university.unionURL !== null) {
+      return <Image source={{ uri: Api.urlForUniLogo(university.unionURL) }} style={styles.logoImage} />
+    }
+  }
+
   renderUniInfo (data) {
     if (data.loading) {
       return <Loading />
@@ -83,7 +91,7 @@ class UniProfile extends Component {
 
       return (
         <View style={styles.container}>
-          <Image source={{ uri: Api.urlForUniLogo(university.url) }} style={styles.logoImage} />
+          {this.imageFrom(university)}
 
           <Text style={styles.uniName}>{university.name}</Text>
 
@@ -119,8 +127,10 @@ class UniProfile extends Component {
 
 const styles = StyleSheet.create({
   logoImage: {
-    width: 50,
-    height: 50
+    marginTop: 16,
+    width: 70,
+    height: 70,
+    borderRadius: 5
   },
   uniName: {
     color: 'rgba(255,255,255,0.7)',
