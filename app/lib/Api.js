@@ -1,7 +1,7 @@
 import gql from 'graphql-tag'
 import { SERVER_API_ENDPOINT, LOCAL_API_ENDPOINT, API_KEY } from './constants'
 
-const debugModeEnabled = true
+const debugModeEnabled = false
 
 export const getEndpoint = () => {
   if (debugModeEnabled) {
