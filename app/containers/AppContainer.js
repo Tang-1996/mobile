@@ -15,6 +15,11 @@ import * as Api from '../lib/Api'
 // Component imports
 import MainTabBarNavigator from '../components/MainTabBarNavigator'
 
+// @see: https://github.com/facebook/react-native/issues/9599
+if (typeof global.self === 'undefined') {
+  global.self = global
+}
+
 const link = new HttpLink({
   uri: Api.getEndpoint(),
   headers: {
