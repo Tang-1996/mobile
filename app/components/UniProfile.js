@@ -22,8 +22,6 @@ class UniProfile extends Component {
   tableDataFrom (university) {
     const tableRows = []
 
-    console.log(university)
-
     // PUBUKPRN for debugging.
     // TODO: Remove for production.
     if (university.pubukprn !== null) {
@@ -119,8 +117,19 @@ class UniProfile extends Component {
     } else {
       const university = this.props.data.university
 
+      // The default uni (background) color.
+      let universityColor = styles.container.backgroundColor
+
+      if (university.color !== null) {
+        universityColor = university.color
+      }
+
+      const containerStyle = StyleSheet.create(
+        { uniBackground: { backgroundColor: universityColor } }
+      )
+
       return (
-        <View style={styles.container}>
+        <View style={[styles.container, containerStyle.uniBackground]}>
           {this.imageFrom(university)}
 
           <Text style={styles.uniName}>{university.name}</Text>
