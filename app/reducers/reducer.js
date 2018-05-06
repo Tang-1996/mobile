@@ -5,7 +5,15 @@ function favouriteUnisReducer (state = [], action) {
   if (action.type === types.FAVOURITE_UNI) {
     const favourites = [...state]
 
-    favourites.push(action.uni)
+    const indexOfUni = favourites.indexOf(action.uni)
+
+    if (indexOfUni === -1) {
+      // The uni is not in the favourites list, so add it.
+      favourites.push(action.uni)
+    } else {
+      // Otherwise, remove the uni from the list.
+      favourites.splice(indexOfUni, 1)
+    }
 
     return favourites
   } else {
