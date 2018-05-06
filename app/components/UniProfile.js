@@ -162,8 +162,7 @@ class UniProfile extends Component {
               </View>} />
 
           <Button
-            text='Show Courses'
-            style={styles.searchButton} />
+            text='Show Courses' />
         </View>
       )
     }

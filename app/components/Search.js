@@ -56,14 +56,6 @@ const styles = StyleSheet.create({
   }
 })
 
-const headerTitleForNavigation = (navigation) => {
-  if (navigation.state.routeName === 'Search') {
-    return 'Search'
-  } else {
-    return ''
-  }
-}
-
 const mapStateToProps = state => {
   return {
     uniLookupTable: state.uniLookupTable
@@ -76,6 +68,14 @@ const mapDispatchToProps = dispatch => {
 
 const search = connect(mapStateToProps, mapDispatchToProps)(Search)
 
+const headerTitleForNavigation = (navigation) => {
+  if (navigation.state.routeName === 'Search') {
+    return 'Search'
+  } else {
+    return ''
+  }
+}
+
 const SearchNavigator = StackNavigator(
   {
     Search: { screen: search },
@@ -85,7 +85,7 @@ const SearchNavigator = StackNavigator(
     headerMode: 'float',
     cardStyle: { backgroundColor: 'transparent' },
     navigationOptions: ({ navigation }) => ({
-      headerTitle: `${headerTitleForNavigation(navigation)}`,
+      headerTitle: headerTitleForNavigation(navigation),
       headerTintColor: 'white',
       headerStyle: {
         backgroundColor: 'rgb(28,68,138)'
