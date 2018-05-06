@@ -19,8 +19,9 @@ class Search extends Component {
 
   onPressItem (item) {
     this.props.navigation.navigate(
-      'UniProfile',
-      { university: item }
+      'UniProfile', {
+        university: item
+      }
     )
   }
 
@@ -35,13 +36,13 @@ class Search extends Component {
   }
 
   render () {
-    const { uniList } = this.props
+    const { uniLookupTable } = this.props
 
     return (
       <View style={styles.container}>
         <StatusBar barStyle='light-content' />
 
-        {this.renderUniList(uniList)}
+        {this.renderUniList(uniLookupTable)}
       </View>
     )
   }
@@ -50,13 +51,23 @@ class Search extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#1a64db',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: '#1a64db'
   }
 })
 
+const headerTitleForNavigation = (navigation) => {
+  if (navigation.state.routeName === 'Search') {
+    return 'Search'
+  } else {
+    return ''
+  }
+}
+
 const mapStateToProps = state => {
-  return { uniList: state.uniLookupTable }
+  return {
+    uniLookupTable: state.uniLookupTable
+  }
 }
 
 const mapDispatchToProps = dispatch => {
@@ -72,13 +83,14 @@ const SearchNavigator = StackNavigator(
   },
   {
     headerMode: 'float',
-    navigationOptions: {
-      headerTitle: 'Search',
+    cardStyle: { backgroundColor: 'transparent' },
+    navigationOptions: ({ navigation }) => ({
+      headerTitle: `${headerTitleForNavigation(navigation)}`,
       headerTintColor: 'white',
       headerStyle: {
         backgroundColor: 'rgb(28,68,138)'
       }
-    }
+    })
   }
 )
 

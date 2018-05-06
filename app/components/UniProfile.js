@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { View, Image, StyleSheet, Text, FlatList } from 'react-native'
+import { View, Image, StyleSheet, TouchableOpacity, Text, FlatList } from 'react-native'
 import { Button } from 'react-native-elements'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
-import { connect } from 'react-redux'
 import { favouriteUni } from '../actions/actions'
+import { connect } from 'react-redux'
 
 import { graphql } from 'react-apollo'
 import * as Api from '../lib/Api'
@@ -14,9 +15,13 @@ class UniProfile extends Component {
   constructor (props) {
     super(props)
 
-    this.state = {
-      university: this.props.navigation.state.params.university
-    }
+    this.toggleFavourite = this.toggleFavourite.bind(this)
+  }
+
+  // Called when the user presses the favourite (star) button.
+  toggleFavourite () {
+    const { favouriteUni, data } = this.props
+    favouriteUni(data.university)
   }
 
   tableDataFrom (university) {
@@ -115,7 +120,8 @@ class UniProfile extends Component {
     if (data.loading) {
       return <Loading />
     } else {
-      const university = this.props.data.university
+      const university = data.university
+      const { favouriteUnis } = this.props
 
       // The default uni (background) color.
       let universityColor = styles.container.backgroundColor
@@ -128,8 +134,20 @@ class UniProfile extends Component {
         { uniBackground: { backgroundColor: universityColor } }
       )
 
+      let uniFavourited = false
+
+      favouriteUnis.forEach(function (uni) {
+        if (uni.pubukprn === university.pubukprn) {
+          uniFavourited = true
+        }
+      })
+
       return (
         <View style={[styles.container, containerStyle.uniBackground]}>
+          <TouchableOpacity style={{ alignItems: 'center', marginRight: 12 }} onPress={() => this.toggleFavourite(university)}>
+            <Ionicons name={`ios-star${uniFavourited ? '' : '-outline'}`} size={25} color='white' />
+          </TouchableOpacity>
+
           {this.imageFrom(university)}
 
           <Text style={styles.uniName}>{university.name}</Text>
@@ -144,9 +162,7 @@ class UniProfile extends Component {
               </View>} />
 
           <Button
-            containerViewStyle={{marginLeft: -10, marginRight: null, width: '105%', justifyContent: 'center'}}
-            text='Find Courses'
-            onPress={() => favouriteUni('1234')}
+            text='Show Courses'
             style={styles.searchButton} />
         </View>
       )
@@ -217,12 +233,14 @@ const UniProfileWithData = graphql(Api.uniInfoGQL(), {
 })(UniProfile)
 
 const mapStateToProps = state => {
-  return { }
+  return {
+    favouriteUnis: state.favouriteUnis
+  }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    favouriteUni: pubukprn => dispatch(favouriteUni(pubukprn))
+    favouriteUni: uni => dispatch(favouriteUni(uni))
   }
 }
 
