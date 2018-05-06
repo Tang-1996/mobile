@@ -144,8 +144,8 @@ class UniProfile extends Component {
 
       return (
         <View style={[styles.container, containerStyle.uniBackground]}>
-          <TouchableOpacity style={{ alignItems: 'center', marginRight: 12 }} onPress={() => this.toggleFavourite(university)}>
-            <Ionicons name={`ios-star${uniFavourited ? '' : '-outline'}`} size={25} color='white' />
+          <TouchableOpacity style={styles.favouriteButton} onPress={() => this.toggleFavourite(university)}>
+            <Ionicons name={`ios-star${uniFavourited ? '' : '-outline'}`} size={28} color='white' />
           </TouchableOpacity>
 
           {this.imageFrom(university)}
@@ -183,9 +183,14 @@ class UniProfile extends Component {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#1a64db',
+    display: 'flex',
+    flexDirection: 'column',
     alignItems: 'center',
     width: '100%',
     height: '100%'
+  },
+  favouriteButton: {
+    marginTop: 12
   },
   logoImage: {
     marginTop: 16,
