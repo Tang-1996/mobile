@@ -9,24 +9,28 @@ import MyFlatList from './myflatlist/MyFlatList'
 import UniProfile from './UniProfile'
 
 class Favourites extends Component {
-  favouriteUnis () {
-    const { favouriteUnis } = this.props
-    return favouriteUnis
+  constructor (props) {
+    super(props)
+    this.onPressItem = this.onPressItem.bind(this)
   }
 
   onPressItem (item) {
-    // TODO: Navigate to UniProfile page for this uni.
-    console.log(item)
+    this.props.navigation.navigate(
+      'UniProfile', {
+        university: item
+      }
+    )
   }
 
-  renderFavouriteUniversitiesList (universities) {
-    if (universities.length <= 0) {
+  renderFavouriteUniversitiesList () {
+    const { favouriteUnis } = this.props
+    if (favouriteUnis.length <= 0) {
       return <Text style={styles.noUnisText}>Universities You Favourite Will Appear Here</Text>
     } else {
       return (
         <MyFlatList
           style={styles.favouriteUniList}
-          data={this.favouriteUnis()}
+          data={favouriteUnis}
           onPressItem={this.onPressItem} />
       )
     }
@@ -36,8 +40,7 @@ class Favourites extends Component {
     return (
       <View style={styles.container}>
         <Ionicons name={'ios-star'} style={styles.logo} />
-
-        {this.renderFavouriteUniversitiesList(this.favouriteUnis())}
+        {this.renderFavouriteUniversitiesList()}
       </View>
     )
   }
@@ -70,7 +73,9 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = state => {
-  return { favouriteUnis: state.favouriteUnis }
+  return {
+    favouriteUnis: state.favouriteUnis
+  }
 }
 
 const mapDispatchToProps = dispatch => {
@@ -79,6 +84,14 @@ const mapDispatchToProps = dispatch => {
 
 const favourites = connect(mapStateToProps, mapDispatchToProps)(Favourites)
 
+const headerTitleForNavigation = (navigation) => {
+  if (navigation.state.routeName === 'Favourites') {
+    return 'Favourites'
+  } else {
+    return ''
+  }
+}
+
 const FavouritesNavigator = StackNavigator(
   {
     Favourites: { screen: favourites },
@@ -86,13 +99,13 @@ const FavouritesNavigator = StackNavigator(
   },
   {
     headerMode: 'float',
-    navigationOptions: {
-      headerTitle: 'Favourites',
+    navigationOptions: ({ navigation }) => ({
+      headerTitle: headerTitleForNavigation(navigation),
       headerTintColor: 'white',
       headerStyle: {
         backgroundColor: 'rgb(28,68,138)'
       }
-    }
+    })
   }
 )
 

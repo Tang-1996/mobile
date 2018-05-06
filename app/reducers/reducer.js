@@ -5,15 +5,16 @@ function favouriteUnisReducer (state = [], action) {
   if (action.type === types.FAVOURITE_UNI) {
     const favourites = [...state]
 
-    const indexOfUni = favourites.indexOf(action.uni)
-
-    if (indexOfUni === -1) {
-      // The uni is not in the favourites list, so add it.
-      favourites.push(action.uni)
-    } else {
-      // Otherwise, remove the uni from the list.
-      favourites.splice(indexOfUni, 1)
+    for (let i = 0; i < favourites.length; i++) {
+      if (action.uni.pubukprn === favourites[i].pubukprn) {
+        // The specified uni is already in favourites, so remove it.
+        favourites.splice(i, 1)
+        return favourites
+      }
     }
+
+    // Otherwise, the uni is not in the favourites list, so add it.
+    favourites.push(action.uni)
 
     return favourites
   } else {
@@ -43,7 +44,16 @@ function uniLookupTableReducer (state = { isFetching: false, fetchFailed: false,
   }
 }
 
+function backgroundColorReducer (state = 'red', action) {
+  if (action.type === types.SET_BACKGROUND_COLOR) {
+    return action.color
+  } else {
+    return state
+  }
+}
+
 export default combineReducers({
   favouriteUnis: favouriteUnisReducer,
-  uniLookupTable: uniLookupTableReducer
+  uniLookupTable: uniLookupTableReducer,
+  backgroundColor: backgroundColorReducer
 })
