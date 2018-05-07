@@ -1,7 +1,7 @@
 import gql from 'graphql-tag'
 import { SERVER_API_ENDPOINT, LOCAL_API_ENDPOINT, API_KEY } from './constants'
 
-const debugModeEnabled = true
+const debugModeEnabled = false
 
 export const getEndpoint = () => {
   if (debugModeEnabled) {
@@ -15,26 +15,15 @@ export const getApiKey = () => {
   return API_KEY
 }
 
-export const allUnisQueryGQL = () => {
+export const uniInfoGQL = () => {
   return gql`
-    query {
-        universities {
-            name
-            pubukprn
-        }
-    }
-  `
-}
-
-export const uniInfoByPubukprnGQL = (pubukprn) => {
-  return gql`
-    query {
-      university($pubukprn: String!) {
+    query ($pubukprn: String!) {
+      university(pubukprn: $pubukprn) {
         name
+        pubukprn
         url
         unionURL
         color
-        courses
         lat
         lon
         averageRent
@@ -44,4 +33,8 @@ export const uniInfoByPubukprnGQL = (pubukprn) => {
       }
     }
   `
+}
+
+export const urlForUniLogo = (uniURL) => {
+  return `https://logo.clearbit.com/${uniURL}`
 }

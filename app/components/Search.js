@@ -1,42 +1,48 @@
 import React, { Component } from 'react'
-import {Image, View, StyleSheet, Text} from 'react-native'
-import { Button, SearchBar } from 'react-native-elements'
+import { View, StyleSheet, StatusBar } from 'react-native'
+import { StackNavigator } from 'react-navigation'
 
 import { connect } from 'react-redux'
 
-import { favouriteUni } from '../actions/actions'
+import UniProfile from './UniProfile'
+import Loading from './Loading'
+import NetworkError from './NetworkError'
+import UniList from './UniList'
 
 class Search extends Component {
   constructor (props) {
     super(props)
+
     this.state = { searchBoxText: '' }
+    this.onPressItem = this.onPressItem.bind(this)
+  }
+
+  onPressItem (item) {
+    this.props.navigation.navigate(
+      'UniProfile', {
+        university: item
+      }
+    )
+  }
+
+  renderUniList (uniList) {
+    if (uniList.isFetching) {
+      return <Loading />
+    } else if (uniList.fetchFailed) {
+      return <NetworkError />
+    } else {
+      return <UniList data={uniList.lookupTable} onPressItem={this.onPressItem} />
+    }
   }
 
   render () {
-    const { favouriteUni } = this.props
+    const { uniLookupTable } = this.props
 
     return (
       <View style={styles.container}>
-        <Image source={require('../../static/images/logo.png')} style={styles.logo} />
+        <StatusBar barStyle='light-content' />
 
-        <Text style={styles.instructions}>
-          Browse for universities by name using the input box below.
-        </Text>
-
-        <SearchBar
-          onChangeText={(text) => this.setState({text})}
-          onClearText={() => this.setState({searchBoxText: ''})}
-          containerStyle={styles.searchBox}
-          inputStyle={styles.searchBoxInput}
-          placeholderTextColor='rgba(250,250,250, 0.6)'
-          icon={{ color: 'white' }}
-          clearIcon={{ color: 'white', name: 'clear' }}
-          placeholder='Type Here' />
-
-        <Button
-          text='Find Universities'
-          onPress={() => favouriteUni('1234')}
-          style={styles.searchButton} />
+        {this.renderUniList(uniLookupTable)}
       </View>
     )
   }
@@ -45,48 +51,47 @@ class Search extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#1a64db',
-    alignItems: 'center'
-  },
-  logo: {
-    marginTop: 35,
-    width: 100,
-    height: 100
-  },
-  instructions: {
-    fontSize: 18,
-    textAlign: 'center',
-    color: '#CCCCCC',
-    padding: 20
-  },
-  searchBox: {
-    width: '90%',
-    marginTop: 20,
-    height: 50,
-    borderRadius: 8,
-    borderBottomColor: 'transparent',
-    borderTopColor: 'transparent',
-    backgroundColor: 'rgba(255,255,255,0.3)'
-  },
-  searchBoxInput: {
-    fontSize: 22,
-    textAlign: 'center',
-    color: 'white',
-    backgroundColor: 'transparent'
-  },
-  searchButton: {
-    marginTop: 30
+    alignItems: 'center',
+    backgroundColor: '#1a64db'
   }
 })
 
 const mapStateToProps = state => {
-  return { }
-}
-
-const mapDispatchToProps = dispatch => {
   return {
-    favouriteUni: pubukprn => dispatch(favouriteUni(pubukprn))
+    uniLookupTable: state.uniLookupTable
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Search)
+const mapDispatchToProps = dispatch => {
+  return { }
+}
+
+const search = connect(mapStateToProps, mapDispatchToProps)(Search)
+
+const headerTitleForNavigation = (navigation) => {
+  if (navigation.state.routeName === 'Search') {
+    return 'Search'
+  } else {
+    return ''
+  }
+}
+
+const SearchNavigator = StackNavigator(
+  {
+    Search: { screen: search },
+    UniProfile: { screen: UniProfile }
+  },
+  {
+    headerMode: 'float',
+    cardStyle: { backgroundColor: 'transparent' },
+    navigationOptions: ({ navigation }) => ({
+      headerTitle: headerTitleForNavigation(navigation),
+      headerTintColor: 'white',
+      headerStyle: {
+        backgroundColor: 'rgb(28,68,138)'
+      }
+    })
+  }
+)
+
+export default SearchNavigator

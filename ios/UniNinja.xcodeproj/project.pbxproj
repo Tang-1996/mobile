@@ -1331,6 +1331,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.loicverrall.unininja;
 				PRODUCT_NAME = UniNinja;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1353,6 +1354,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.loicverrall.unininja;
 				PRODUCT_NAME = UniNinja;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

@@ -5,7 +5,16 @@ function favouriteUnisReducer (state = [], action) {
   if (action.type === types.FAVOURITE_UNI) {
     const favourites = [...state]
 
-    favourites.push(action.pubukprn)
+    for (let i = 0; i < favourites.length; i++) {
+      if (action.uni.pubukprn === favourites[i].pubukprn) {
+        // The specified uni is already in favourites, so remove it.
+        favourites.splice(i, 1)
+        return favourites
+      }
+    }
+
+    // Otherwise, the uni is not in the favourites list, so add it.
+    favourites.push(action.uni)
 
     return favourites
   } else {
@@ -13,7 +22,7 @@ function favouriteUnisReducer (state = [], action) {
   }
 }
 
-function uniLookupTableReducer (state = { isFetching: false, lookupTable: {} }, action) {
+function uniLookupTableReducer (state = { isFetching: false, fetchFailed: false, lookupTable: {} }, action) {
   switch (action.type) {
     case types.REQUEST_UNI_LOOKUP_TABLE:
       return {...state,
@@ -22,25 +31,22 @@ function uniLookupTableReducer (state = { isFetching: false, lookupTable: {} }, 
     case types.RECEIVE_UNI_LOOKUP_TABLE:
       return {...state,
         isFetching: false,
+        fetchFailed: false,
         lookupTable: action.lookupTable
+      }
+    case types.UNI_LOOKUP_TABLE_NETWORK_ERR:
+      return {...state,
+        isFetching: false,
+        fetchFailed: true
       }
     default:
       return state
   }
 }
 
-function toggleDebugModeReducer (state = false, action) {
-  switch (action.type) {
-    case types.TOGGLE_DEBUG_MODE:
-      return !state
-    default:
-      return state
-  }
-}
-
-function selectTabReducer (state = 1, action) {
-  if (action.type === types.SELECT_TAB) {
-    return action.index
+function backgroundColorReducer (state = 'red', action) {
+  if (action.type === types.SET_BACKGROUND_COLOR) {
+    return action.color
   } else {
     return state
   }
@@ -49,6 +55,5 @@ function selectTabReducer (state = 1, action) {
 export default combineReducers({
   favouriteUnis: favouriteUnisReducer,
   uniLookupTable: uniLookupTableReducer,
-  debugModeEnabled: toggleDebugModeReducer,
-  selectedTab: selectTabReducer
+  backgroundColor: backgroundColorReducer
 })

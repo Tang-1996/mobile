@@ -1,10 +1,10 @@
 import * as types from './types'
-import * as Api from '../lib/graphql-api'
+import * as Api from '../lib/Api'
 
-export function favouriteUni (pubukprn) {
+export function favouriteUni (uni) {
   return {
     type: types.FAVOURITE_UNI,
-    pubukprn
+    uni
   }
 }
 
@@ -20,6 +20,12 @@ export function receiveUniLookupTable (lookupTable) {
   return {
     type: types.RECEIVE_UNI_LOOKUP_TABLE,
     lookupTable
+  }
+}
+
+export function reportUniLookupTableNetworkError () {
+  return {
+    type: types.UNI_LOOKUP_TABLE_NETWORK_ERR
   }
 }
 
@@ -44,21 +50,9 @@ export function fetchUniLookupTable () {
           })
         }
       }, error => {
-        console.log('ERROR: ', error)
+        console.log('Network ERROR: ', error)
+        dispatch(reportUniLookupTableNetworkError())
       }
     )
-  }
-}
-
-export function toggleDebugMode () {
-  return {
-    type: types.TOGGLE_DEBUG_MODE
-  }
-}
-
-export function selectTab (index) {
-  return {
-    type: types.SELECT_TAB,
-    index
   }
 }
